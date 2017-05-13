@@ -43,8 +43,12 @@ public class ServiceDiscovery {
         this.interfaces=interfaces;
         this.CONNECT_ADDR=address;
         connect();
-        watchNode("NettyRpc");
-        Thread.sleep(Integer.MAX_VALUE);
+        if(cf!=null) {
+            watchRoot();
+            watchNode("NettyRpc");
+
+        }
+        //Thread.sleep(Integer.MAX_VALUE);
     }
 
     private CuratorFramework connect()

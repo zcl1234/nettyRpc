@@ -3,8 +3,10 @@ package com.zcl.nettyRpc.registry;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.leader.LeaderLatch;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,10 +40,13 @@ public class ServiceRegistry {
     private void setRootNode()
     {
         try {
-           String path= cf.create().creatingParentsIfNeeded()
-                    .withMode(CreateMode.PERSISTENT).forPath("/NettyRpc");
-            logger.info("success create zookeeper rootNode:path{}",path);
-        } catch (Exception e) {
+            Stat stat = cf.checkExists().forPath("/NettyRpc");
+            if (stat == null) {
+                String path = cf.create().creatingParentsIfNeeded()
+                        .withMode(CreateMode.PERSISTENT).forPath("/NettyRpc");
+                logger.info("success create zookeeper rootNode:path{}", path);
+            }
+        }catch (Exception e) {
             logger.error("",e);
         }
     }
@@ -66,7 +71,7 @@ public class ServiceRegistry {
      * 创建服务接口节点
      * @param interfaceName
      */
-    private void createInterfaceNode(String interfaceName)
+    public void createInterfaceNode(String interfaceName)
     {
         try {
             String path=cf.create().creatingParentsIfNeeded()
@@ -82,7 +87,7 @@ public class ServiceRegistry {
      * @param interfaceName
      * @param serverAddress
      */
-    private void createInterfaceAddressNode(String interfaceName,String serverAddress)
+    public void createInterfaceAddressNode(String interfaceName,String serverAddress)
     {
         createInterfaceNode(interfaceName);
         try {

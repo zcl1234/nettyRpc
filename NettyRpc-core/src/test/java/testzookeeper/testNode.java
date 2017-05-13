@@ -34,7 +34,7 @@ public class testNode {
         list.add("interface3");
 
         try {
-            new ServiceDiscovery(list);
+            new ServiceDiscovery("172.16.34.136:2181",list);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
