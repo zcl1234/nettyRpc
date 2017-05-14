@@ -14,7 +14,7 @@ public class RpcClient {
     private static final String zookeeperAddress="172.16.34.136:2181,172.16.34.136:2183,172.16.34.136:2184";
 
     private ServiceDiscovery serviceDiscovery;
-    public RpcClient(String zookeeperAddress, List<String> interfaces) throws InterruptedException {
+    public RpcClient(String zookeeperAddress, List<String> interfaces) throws Exception {
          this.serviceDiscovery=new ServiceDiscovery(zookeeperAddress,interfaces);
     }
 

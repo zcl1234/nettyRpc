@@ -39,15 +39,15 @@ public class ServiceDiscovery {
     //客户端订阅的节点
     private List<String> interfaces;
 
-    public ServiceDiscovery(String address,List<String> interfaces) throws InterruptedException {
+    public ServiceDiscovery(String address,List<String> interfaces) throws Exception {
         this.interfaces=interfaces;
         this.CONNECT_ADDR=address;
         connect();
         if(cf!=null) {
             watchRoot();
             watchNode("NettyRpc");
-
         }
+      //  System.in.read();
         //Thread.sleep(Integer.MAX_VALUE);
     }
 

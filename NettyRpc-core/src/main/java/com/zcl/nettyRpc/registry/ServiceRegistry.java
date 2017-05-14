@@ -18,8 +18,8 @@ public class ServiceRegistry {
 
     private static final Logger logger= LoggerFactory.getLogger(ServiceRegistry.class);
 
-    private final String CONNECT_ADDR="172.16.34.136:2181,172.16.34.136:2183,172.16.34.136:2184";
-
+   // private final String CONNECT_ADDR="172.16.34.136:2181,172.16.34.136:2183,172.16.34.136:2184";
+    private final String CONNECT_ADDR="192.168.137.134:2181,192.168.137.134:2182,192.168.137:2183";
     private final int SESSION_OUTTIME=5000;
 
     private CuratorFramework cf=null;
@@ -73,6 +73,17 @@ public class ServiceRegistry {
      */
     public void createInterfaceNode(String interfaceName)
     {
+        Stat stat=null;
+        try {
+            stat=cf.checkExists().forPath("/NettyRpc/"+interfaceName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(stat!=null)
+        {
+            logger.info("you have registed this service");
+            return;
+        }
         try {
             String path=cf.create().creatingParentsIfNeeded()
                     .withMode(CreateMode.PERSISTENT).forPath("/NettyRpc"+"/"+interfaceName);
@@ -90,6 +101,17 @@ public class ServiceRegistry {
     public void createInterfaceAddressNode(String interfaceName,String serverAddress)
     {
         createInterfaceNode(interfaceName);
+        Stat stat=null;
+        try {
+           stat=cf.checkExists().forPath("/NettyRpc/"+interfaceName+"/"+serverAddress);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(stat!=null)
+        {
+            logger.info("you have registed this service");
+            return;
+        }
         try {
             String path=cf.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
                     .forPath("/NettyRpc"+"/"+interfaceName+"/"+serverAddress);

@@ -139,7 +139,6 @@ public class ConnectManager {
             }
 
 
-            //TODO   不同的地址发布相同的服务
             //更新interfaceandHandlersMap
             for(String key:Service2IpMap.keySet())
             {
@@ -187,7 +186,7 @@ public class ConnectManager {
      * 连接发布服务的节点到netty服务器
      * @param address
      */
-    private void ConnectServerNode(InetSocketAddress address)
+    public void ConnectServerNode(final InetSocketAddress address)
     {
         logger.info("start connect to service-provider:{}",address);
 

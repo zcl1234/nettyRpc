@@ -18,6 +18,9 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * RPC服务器
@@ -32,6 +35,8 @@ public class RPCServer {
     //存放服务与服务对象之间的映射关系
     private Map<String,Object> serviceBeanMap=new ConcurrentHashMap<>();
 
+    //处理任务采用线程池，提高性能
+    private static ExecutorService executorService;
     public RPCServer(String serverAddress,List<Class<?>> services)
     {
         this.serverAddress=serverAddress;
@@ -98,16 +103,35 @@ public class RPCServer {
     public void publishService(List<Class<?>> services) {
         try {
             for (Class<?> service : services) {
-                String className = service.getName();
+                String className=service.getName();
                 Object object = service.newInstance();
                 serviceBeanMap.put(className, object);
               // serviceRegistry.createInterfaceNode(className);
-                serviceRegistry.createInterfaceAddressNode(className, serverAddress);
+                for(Class<?> clazz:service.getInterfaces())
+                serviceRegistry.createInterfaceAddressNode(clazz.getName(), serverAddress);
             }
         }catch (Exception e)
         {
             logger.error("publish service failed:{}",e);
         }
     }
+
+    /**
+     * 提交任务
+     * @param task
+     */
+    public static void submit(Runnable task)
+    {
+        if(executorService==null)
+        {
+            synchronized (RPCServer.class)
+            {
+                if(executorService==null)
+                    executorService= Executors.newFixedThreadPool(16);
+            }
+        }
+        executorService.submit(task);
+    }
+
 
 }

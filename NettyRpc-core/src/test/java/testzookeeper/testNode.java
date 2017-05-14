@@ -35,7 +35,7 @@ public class testNode {
 
         try {
             new ServiceDiscovery("172.16.34.136:2181",list);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

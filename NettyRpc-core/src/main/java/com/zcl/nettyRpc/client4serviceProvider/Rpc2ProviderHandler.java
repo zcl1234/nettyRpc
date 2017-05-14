@@ -53,6 +53,7 @@ public abstract class Rpc2ProviderHandler extends SimpleChannelInboundHandler<Re
         RPCFuture rpcFuture=new RPCFuture(request);
         requestId2Future.put(request.getRequestId(),rpcFuture);
         channel.writeAndFlush(request);
+        logger.info("success sendResquest:{}",channel.remoteAddress());
         return rpcFuture;
     }
 
