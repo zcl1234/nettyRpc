@@ -45,5 +45,6 @@ public class RpcProxy<T> implements InvocationHandler{
         RPCFuture rpcFuture=handler.sendRequestSync(request);
         //同步阻塞方式
         return rpcFuture.get();
+
     }
 }

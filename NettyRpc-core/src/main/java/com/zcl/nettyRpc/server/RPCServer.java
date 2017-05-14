@@ -33,7 +33,7 @@ public class RPCServer {
     private ServiceRegistry serviceRegistry;
     private String serverAddress;
     //存放服务与服务对象之间的映射关系
-    private Map<String,Object> serviceBeanMap=new ConcurrentHashMap<>();
+    private static Map<String,Object> serviceBeanMap=new ConcurrentHashMap<>();
 
     //处理任务采用线程池，提高性能
     private static ExecutorService executorService;
@@ -50,7 +50,7 @@ public class RPCServer {
      * @param
      */
     //该注解表示该方法在类实例化后实现
-    @PostConstruct
+   // @PostConstruct
     public void startServer()
     {
         EventLoopGroup bossGroup=new NioEventLoopGroup();
@@ -104,11 +104,11 @@ public class RPCServer {
         try {
             for (Class<?> service : services) {
                 String className=service.getName();
-                Object object = service.newInstance();
-                serviceBeanMap.put(className, object);
-              // serviceRegistry.createInterfaceNode(className);
-                for(Class<?> clazz:service.getInterfaces())
-                serviceRegistry.createInterfaceAddressNode(clazz.getName(), serverAddress);
+                Object object = service.newInstance();  //保存要发布类的实例化对象
+                for(Class<?> clazz:service.getInterfaces()) {
+                    serviceRegistry.createInterfaceAddressNode(clazz.getName(), serverAddress);  //注册接口服务
+                    serviceBeanMap.put(clazz.getName(),object);  //保存接口名字和实例化对象的映射
+                }
             }
         }catch (Exception e)
         {

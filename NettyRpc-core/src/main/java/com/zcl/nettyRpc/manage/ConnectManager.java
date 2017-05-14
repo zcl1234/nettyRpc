@@ -203,9 +203,10 @@ public class ConnectManager {
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline pipeline=socketChannel.pipeline();
                         //TODO
-                        pipeline.addLast(new LengthFieldBasedFrameDecoder(65535,0,4,0,0));
-                        pipeline.addLast(new RpcDecoder(Request.class));
-                        pipeline.addLast(new RpcEncoder(Response.class));
+                        pipeline.addLast(new RpcEncoder(Request.class));
+                        pipeline.addLast(new LengthFieldBasedFrameDecoder(65536,0,4,0,0));
+                        pipeline.addLast(new RpcDecoder(Response.class));
+
                         pipeline.addLast(new Rpc2ProviderHandler() {
                             @Override
                             public void handlerCallback(Rpc2ProviderHandler handler, boolean isActive) {

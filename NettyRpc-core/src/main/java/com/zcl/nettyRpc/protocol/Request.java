@@ -1,5 +1,7 @@
 package com.zcl.nettyRpc.protocol;
 
+import java.util.Arrays;
+
 /**
  * 请求协议
  * Created by zhangchenlin on 17/5/12.
@@ -52,9 +54,14 @@ public class Request {
         this.parameters = parameters;
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Request{" +
+                "requestId='" + requestId + '\'' +
+                ", className='" + className + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", parameters=" + Arrays.toString(parameters) +
+                ", parameterTypes=" + Arrays.toString(parameterTypes) +
+                '}';
+    }
 }

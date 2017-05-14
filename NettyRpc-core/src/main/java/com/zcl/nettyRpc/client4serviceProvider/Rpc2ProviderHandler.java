@@ -23,10 +23,12 @@ public abstract class Rpc2ProviderHandler extends SimpleChannelInboundHandler<Re
     private ConcurrentHashMap<String,RPCFuture> requestId2Future=new ConcurrentHashMap<>();
     public static InetSocketAddress socketAddress;
     public Channel channel;
+    public ChannelHandlerContext ctx;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
+        this.ctx=ctx;
         channel=ctx.channel();
         socketAddress=(InetSocketAddress)ctx.channel().remoteAddress();
         handlerCallback(channel.pipeline().get(Rpc2ProviderHandler.class),true);
@@ -52,8 +54,8 @@ public abstract class Rpc2ProviderHandler extends SimpleChannelInboundHandler<Re
     {
         RPCFuture rpcFuture=new RPCFuture(request);
         requestId2Future.put(request.getRequestId(),rpcFuture);
-        channel.writeAndFlush(request);
-        logger.info("success sendResquest:{}",channel.remoteAddress());
+        ctx.writeAndFlush(request);
+        logger.info("success sendResquest:{},to{}",request,channel.remoteAddress());
         return rpcFuture;
     }
 

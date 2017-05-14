@@ -28,4 +28,11 @@ public class subcribe {
         Goods goods=goodsService.getGoods("18912343");
         logger.info("goods information:{}",goods);
     }
+    @Test
+    public void test2()
+    {
+        GoodsService goodsService=RpcClient.createProxy(GoodsService.class);
+        Goods goods=goodsService.getGoods("1891233");
+        logger.info("goods information:{}",goods);
+    }
 }

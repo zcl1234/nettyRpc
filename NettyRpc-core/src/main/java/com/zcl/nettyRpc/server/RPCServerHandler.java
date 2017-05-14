@@ -41,13 +41,14 @@ public class RPCServerHandler extends SimpleChannelInboundHandler<Request>{
         logger.info("====rpc server Inactive "+ctx.channel().remoteAddress());
     }
 
+    /*
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Request request) throws Exception {
         if(request!=null)
             logger.info("===rpc read message"+request);
     }
+    */
 
-    /*
         @Override
         public void channelRead0(final ChannelHandlerContext channelHandlerContext,final Request request) throws Exception {
             logger.info("====rpc server channelRead0:"+channelHandlerContext.channel().remoteAddress());
@@ -89,10 +90,11 @@ public class RPCServerHandler extends SimpleChannelInboundHandler<Request>{
                 }
             });
         }
-        */
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
         logger.info("rpc server caught exception: "+ctx.channel().remoteAddress()+"|"+cause.getMessage());
+        ctx.close();
     }
 }

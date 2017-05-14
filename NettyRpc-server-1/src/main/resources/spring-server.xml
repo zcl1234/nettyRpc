@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 发布服务-->
-    <bean id="goodsserviceImpl" class="com.zcl.nettyRpc.server.RPCServer">
+    <bean id="rpcServer" class="com.zcl.nettyRpc.server.RPCServer">
         <constructor-arg name="serverAddress" value="localhost:2345"/>
         <constructor-arg>
             <list>
