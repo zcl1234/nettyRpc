@@ -26,14 +26,16 @@
         <module name="nettyRpc-core" />
         <module name="nettyRpc-interface" />
         <module name="NettyRpc-server-1" />
+        <module name="NettyRpc-server-2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="nettyRpc" target="1.7" />
-      <module name="NettyRpc-client" target="1.7" />
-      <module name="nettyRpc-core" target="1.7" />
-      <module name="nettyRpc-interface" target="1.7" />
-      <module name="NettyRpc-server-1" target="1.7" />
+      <module name="nettyRpc" target="1.8" />
+      <module name="NettyRpc-client" target="1.8" />
+      <module name="nettyRpc-core" target="1.8" />
+      <module name="nettyRpc-interface" target="1.8" />
+      <module name="NettyRpc-server-1" target="1.8" />
+      <module name="NettyRpc-server-2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package com.zcl.nettyRpc.client4serviceProvider;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,7 +15,7 @@ public class SameInterfaceRpcHandlers {
 
     public SameInterfaceRpcHandlers()
     {
-        this.handlers=new LinkedList<>();
+        this.handlers=new ArrayList<>();
     }
 
     public Rpc2ProviderHandler getSLBHandler()

@@ -1,5 +1,6 @@
 package com.zcl.nettyRpc.client4serviceProvider;
 
+import com.zcl.nettyRpc.client.AsyncRPCCallback;
 import com.zcl.nettyRpc.client.RPCFuture;
 import com.zcl.nettyRpc.protocol.Request;
 import com.zcl.nettyRpc.protocol.Response;
@@ -21,7 +22,7 @@ public abstract class Rpc2ProviderHandler extends SimpleChannelInboundHandler<Re
     private static final Logger logger= LoggerFactory.getLogger(Rpc2ProviderHandler.class);
 
     private ConcurrentHashMap<String,RPCFuture> requestId2Future=new ConcurrentHashMap<>();
-    public static InetSocketAddress socketAddress;
+    public  InetSocketAddress socketAddress;
     public Channel channel;
     public ChannelHandlerContext ctx;
 
@@ -58,6 +59,17 @@ public abstract class Rpc2ProviderHandler extends SimpleChannelInboundHandler<Re
         logger.info("success sendResquest:{},to{}",request,channel.remoteAddress());
         return rpcFuture;
     }
+
+
+    public RPCFuture sendRequestAsync(Request request, AsyncRPCCallback callback)
+    {
+        RPCFuture rpcFuture=new RPCFuture(request,callback);
+        requestId2Future.put(request.getRequestId(),rpcFuture);
+        ctx.writeAndFlush(request);
+        logger.info("success sendResquest:{},to{}",request,channel.remoteAddress());
+        return rpcFuture;
+    }
+
 
 
     public abstract void  handlerCallback(Rpc2ProviderHandler handler,boolean isActive);

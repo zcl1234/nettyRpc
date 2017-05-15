@@ -9,6 +9,7 @@
         <constructor-arg>
             <list>
                 <value>com.zcl.nettyRpc.service.impl.GoodsServiceImpl</value>
+                <value>com.zcl.nettyRpc.service.impl.OrderServiceImpl</value>
             </list>
         </constructor-arg>
     </bean>

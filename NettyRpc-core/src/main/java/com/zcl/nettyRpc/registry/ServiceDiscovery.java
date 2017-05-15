@@ -33,7 +33,7 @@ public class ServiceDiscovery {
 
     //zookeeper中注册的服务节点
     private List<String> interfaceList=new LinkedList<>();
-    private Set<InetSocketAddress> dataSet=new HashSet<>();
+
 
     private ConcurrentHashMap<String,Set<InetSocketAddress>> Service2IpMap=new ConcurrentHashMap<>();
     //客户端订阅的节点
@@ -77,7 +77,9 @@ public class ServiceDiscovery {
             for(String service:interfaceList)
             {
                 if(interfaces.contains(service))
-                {   //监视地址节点
+                {
+                    Set<InetSocketAddress> dataSet=new HashSet<>();
+                    //监视地址节点
                     watchNode("NettyRpc/"+service);
                     List<String> addressList=cf.getChildren().forPath("/NettyRpc/"+service);
                     for(String s:addressList)

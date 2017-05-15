@@ -4,10 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="rpcClient" class="com.zcl.nettyRpc.client.RpcClient">
-        <constructor-arg name="zookeeperAddress" value="192.168.137.134:2181"/>
+        <!--<constructor-arg name="zookeeperAddress" value="192.168.137.134:2181"/>-->
+        <constructor-arg name="zookeeperAddress" value="172.16.34.136:2181"/>
         <constructor-arg>
             <list>
                 <value>com.zcl.nettyRpc.serivce.GoodsService</value>
+                <value>com.zcl.nettyRpc.serivce.OrderService</value>
+                <value>com.zcl.nettyRpc.serivce.UserService</value>
             </list>
         </constructor-arg>
     </bean>

@@ -155,7 +155,7 @@ public class ConnectManager {
 
             logger.info("current connectHandlerMap:{}",connectHandlerMap);
             logger.info("current connectHandlerList:{}",connectHandlerList);
-            logger.info("current interfaceandHandlersMap",interfaceandHandlersMap);
+            logger.info("current interfaceandHandlersMap:{}",interfaceandHandlersMap);
 
         }else {
             logger.error("no available server node.all server nodes down!");
