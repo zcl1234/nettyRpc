@@ -19,7 +19,6 @@ public class testNode {
     @Test
     public void testRegister()
     {
-        new ServiceRegistry();
     }
 
     /**

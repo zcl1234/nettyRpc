@@ -3,6 +3,7 @@ package com.zcl.nettyRpc.server;
 import com.zcl.nettyRpc.codec.RpcDecoder;
 import com.zcl.nettyRpc.codec.RpcEncoder;
 import com.zcl.nettyRpc.codecUntil.*;
+import com.zcl.nettyRpc.parrallel.RpcThreadPool;
 import com.zcl.nettyRpc.protocol.Request;
 import com.zcl.nettyRpc.protocol.Response;
 import com.zcl.nettyRpc.registry.ServiceRegistry;
@@ -37,12 +38,19 @@ public class RPCServer {
     //存放服务与服务对象之间的映射关系
     private static Map<String,Object> serviceBeanMap=new ConcurrentHashMap<>();
 
+    private static  String zookeeperaddress;
+
     //处理任务采用线程池，提高性能
     private static ExecutorService executorService;
-    public RPCServer(String serverAddress,List<Class<?>> services)
+
+    //采用自定义的线程池
+    private static Executor executor;
+
+    public RPCServer(String serverAddress,List<Class<?>> services,String zookeeperaddress)
     {
+        this.zookeeperaddress=zookeeperaddress;
         this.serverAddress=serverAddress;
-        serviceRegistry=new ServiceRegistry();
+        serviceRegistry=new ServiceRegistry(zookeeperaddress);
         publishService(services);
        // startServer();
     }
@@ -128,6 +136,7 @@ public class RPCServer {
      */
     public static void submit(Runnable task)
     {
+        /*
         if(executorService==null)
         {
             synchronized (RPCServer.class)
@@ -137,7 +146,21 @@ public class RPCServer {
             }
         }
         executorService.submit(task);
+        */
+        //使用自定义的线程池
+        if(executor==null)
+        {
+            synchronized (RPCServer.class)
+            {
+                if(executor==null)
+                {
+                    executor=RpcThreadPool.getExecutor(16,1);
+                }
+            }
+        }
+        executor.execute(task);
     }
+
 
 
 }

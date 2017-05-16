@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
+    <context:property-placeholder location="system.properties"/>
     <bean id="rpcServer" class="com.zcl.nettyRpc.server.RPCServer">
-        <constructor-arg name="serverAddress" value="127.0.0.1:2145"/>
+        <constructor-arg name="serverAddress" value="${serverAdress}"/>
         <constructor-arg>
             <list>
                 <value>com.zcl.nettyRpc.service.impl.UserServiceImpl</value>
                 <value>com.zcl.nettyRpc.service.impl.GoodsServiceImpl</value>
             </list>
         </constructor-arg>
+        <constructor-arg name="zookeeperaddress" value="${zookeeperAddress}"/>
     </bean>
 
 </beans>

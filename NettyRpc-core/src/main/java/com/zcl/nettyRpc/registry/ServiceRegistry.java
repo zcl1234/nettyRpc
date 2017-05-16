@@ -18,14 +18,15 @@ public class ServiceRegistry {
 
     private static final Logger logger= LoggerFactory.getLogger(ServiceRegistry.class);
 
-   private final String CONNECT_ADDR="172.16.34.141:2181,172.16.34.141:2183,172.16.34.141:2184";
+   private final String CONNECT_ADDR;
    // private final String CONNECT_ADDR="192.168.137.134:2181,192.168.137.134:2182,192.168.137:2183";
     private final int SESSION_OUTTIME=5000;
 
     private CuratorFramework cf=null;
 
-    public ServiceRegistry()
+    public ServiceRegistry(String zookeeperaddress)
     {
+        this.CONNECT_ADDR=zookeeperaddress;
         cf=connect();
         if(cf!=null)
         {

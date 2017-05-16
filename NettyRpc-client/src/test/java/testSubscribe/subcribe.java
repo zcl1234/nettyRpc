@@ -3,6 +3,7 @@ package testSubscribe;
 import com.zcl.nettyRpc.Entity.Goods;
 import com.zcl.nettyRpc.Entity.Order;
 import com.zcl.nettyRpc.Entity.User;
+import com.zcl.nettyRpc.Exception.ResponseException;
 import com.zcl.nettyRpc.client.AsyncRPCCallback;
 import com.zcl.nettyRpc.client.RPCFuture;
 import com.zcl.nettyRpc.client.RpcClient;
@@ -110,6 +111,7 @@ public class subcribe {
             @Override
             public void fail(Exception e) {
                 logger.error(e.getMessage());
+              //  throw new ResponseException("no such service published");
             }
         },new User(1,"zhangsna","updated user"));
 

@@ -1,5 +1,6 @@
 package com.zcl.nettyRpc.proxy;
 
+import com.zcl.nettyRpc.Exception.ResponseException;
 import com.zcl.nettyRpc.client.AsyncRPCCallback;
 import com.zcl.nettyRpc.client.RPCFuture;
 import com.zcl.nettyRpc.client4serviceProvider.Rpc2ProviderHandler;
@@ -55,7 +56,10 @@ public class AsyncRpcProxy {
        }
         request.setParameterTypes(paramTypes);
         Rpc2ProviderHandler handler= ConnectManager.getInstance().chooseHandler(clazz.getName());
-        RPCFuture rpcFuture=handler.sendRequestAsync(request,callback);
+        if(handler==null) {
+           throw new ResponseException("no such service has published");
+        }
+        RPCFuture rpcFuture = handler.sendRequestAsync(request, callback);
         return rpcFuture;
     }
 

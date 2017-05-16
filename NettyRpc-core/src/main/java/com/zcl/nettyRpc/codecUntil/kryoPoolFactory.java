@@ -19,7 +19,7 @@ public class kryoPoolFactory {
         @Override
         public Kryo create() {
             Kryo kryo=new Kryo();
-            //TODO UNDESTAND
+            //开启这个选项后，相同的对象将被序列化为同一个byte[]，默认关闭，如果要支持循环引用，则必须开启
             kryo.setReferences(false);
             //把已知结构注册到kryo注册器里面，提高序列化／反序列化效率
             kryo.register(Request.class);

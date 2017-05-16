@@ -24,7 +24,7 @@ public class performance {
 
     public static final Logger logger= LoggerFactory.getLogger(performance.class);
 
-    private static final int requestNum=30000;
+    private static final int requestNum=10000;
 
     private AtomicInteger successNum=new AtomicInteger(0);
     private AtomicInteger failedNum=new AtomicInteger(0);
@@ -74,7 +74,7 @@ public class performance {
      */
     @Test
     public void testParrelsend() throws InterruptedException {
-        int requestNum=4000;
+        int requestNum=2000;
         AtomicInteger successNum=new AtomicInteger(0);
         AtomicInteger failedNum=new AtomicInteger(0);
         CountDownLatch countDownLatch1=new CountDownLatch(1);
