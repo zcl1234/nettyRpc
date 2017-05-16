@@ -851,7 +851,7 @@
       <workItem from="1494823795155" duration="37000" />
       <workItem from="1494823840208" duration="22587000" />
       <workItem from="1494900781189" duration="1377000" />
-      <workItem from="1494914283053" duration="24246000" />
+      <workItem from="1494914283053" duration="24259000" />
     </task>
     <task id="LOCAL-00001" summary="完成了异步调用，解决了无法负载均衡的bug,完成了性能测试。">
       <created>1494857318873</created>
@@ -874,7 +874,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494944057132</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="完善了代码，服务器采用自定义线程池来实现">
+      <created>1494944106723</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1494944106723</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -910,7 +917,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48247000" />
+    <option name="totallyTimeSpent" value="48260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1280" height="702" extended-state="6" />
