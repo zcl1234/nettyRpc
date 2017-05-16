@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5e7d0c8-b960-4a88-82d1-bb6fe0f3fe67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-client/src/main/resources/system.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/BlockingQueueType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/NamedThreadFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/RpcThreadPool.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/AbortPolicy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/BlockingPolicy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/CallerRunsPolicy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/DiscardedPolicy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/RejectedPolicy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/RejectedPolicyType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/parrallel/policy/RejectedRunnable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/untils/SystemConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-serevr-2/src/main/resources/system.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NettyRpc-server-1/src/main/resources/system.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-client/src/main/resources/spring-client.xml" afterPath="$PROJECT_DIR$/NettyRpc-client/src/main/resources/spring-client.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-client/src/test/java/testSubscribe/performance.java" afterPath="$PROJECT_DIR$/NettyRpc-client/src/test/java/testSubscribe/performance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-client/src/test/java/testSubscribe/subcribe.java" afterPath="$PROJECT_DIR$/NettyRpc-client/src/test/java/testSubscribe/subcribe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/logs/error.log" afterPath="$PROJECT_DIR$/NettyRpc-core/logs/error.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/logs/log.log" afterPath="$PROJECT_DIR$/NettyRpc-core/logs/log.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/codecUntil/kryoPoolFactory.java" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/codecUntil/kryoPoolFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/proxy/AsyncRpcProxy.java" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/proxy/AsyncRpcProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/registry/ServiceRegistry.java" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/registry/ServiceRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/server/RPCServer.java" afterPath="$PROJECT_DIR$/NettyRpc-core/src/main/java/com/zcl/nettyRpc/server/RPCServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-core/src/test/java/testzookeeper/testNode.java" afterPath="$PROJECT_DIR$/NettyRpc-core/src/test/java/testzookeeper/testNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-serevr-2/src/main/resources/Spring-server.xml" afterPath="$PROJECT_DIR$/NettyRpc-serevr-2/src/main/resources/Spring-server.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NettyRpc-server-1/src/main/resources/spring-server.xml" afterPath="$PROJECT_DIR$/NettyRpc-server-1/src/main/resources/spring-server.xml" />
     </list>
     <ignored path="nettyRpc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -877,7 +851,7 @@
       <workItem from="1494823795155" duration="37000" />
       <workItem from="1494823840208" duration="22587000" />
       <workItem from="1494900781189" duration="1377000" />
-      <workItem from="1494914283053" duration="24164000" />
+      <workItem from="1494914283053" duration="24246000" />
     </task>
     <task id="LOCAL-00001" summary="完成了异步调用，解决了无法负载均衡的bug,完成了性能测试。">
       <created>1494857318873</created>
@@ -893,7 +867,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494931074160</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="完善了代码，服务器采用自定义线程池来实现">
+      <created>1494944057132</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1494944057132</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -929,7 +910,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48165000" />
+    <option name="totallyTimeSpent" value="48247000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1280" height="702" extended-state="6" />
@@ -977,7 +958,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成了异步调用，解决了无法负载均衡的bug,完成了性能测试。" />
     <MESSAGE value="完善了序列化部分类的代码质量，增加了kyro序列化" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了序列化部分类的代码质量，增加了kyro序列化" />
+    <MESSAGE value="完善了代码，服务器采用自定义线程池来实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善了代码，服务器采用自定义线程池来实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
