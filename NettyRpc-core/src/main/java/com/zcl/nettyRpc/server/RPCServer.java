@@ -2,6 +2,7 @@ package com.zcl.nettyRpc.server;
 
 import com.zcl.nettyRpc.codec.RpcDecoder;
 import com.zcl.nettyRpc.codec.RpcEncoder;
+import com.zcl.nettyRpc.codecUntil.*;
 import com.zcl.nettyRpc.protocol.Request;
 import com.zcl.nettyRpc.protocol.Response;
 import com.zcl.nettyRpc.registry.ServiceRegistry;
@@ -11,6 +12,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,8 +66,12 @@ public class RPCServer {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline channelPipeline=socketChannel.pipeline();
                             channelPipeline.addLast(new LengthFieldBasedFrameDecoder(65536,0,4,0,0));
-                            channelPipeline.addLast(new RpcDecoder(Request.class));
-                            channelPipeline.addLast(new RpcEncoder(Response.class));
+                           // channelPipeline.addLast(new RpcDecoder(Request.class));
+                            //channelPipeline.addLast(new RpcEncoder(Response.class));
+                            //channelPipeline.addLast(new KryoDecoder(new KryoCodecUntil(kryoPoolFactory.getKryoPoolInstance())));
+                            //channelPipeline.addLast(new KryoEncoder(new KryoCodecUntil(kryoPoolFactory.getKryoPoolInstance())));
+                            channelPipeline.addLast(new ProtostuffDecoder(new ProtostuffCodecUntil(Request.class)));
+                            channelPipeline.addLast(new ProtostuffEncoder(new ProtostuffCodecUntil(Response.class)));
                             channelPipeline.addLast(new RPCServerHandler(serviceBeanMap));
                         }
                     }).option(ChannelOption.SO_BACKLOG,128)

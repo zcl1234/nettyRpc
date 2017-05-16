@@ -8,6 +8,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cglib.reflect.FastClass;
+import org.springframework.cglib.reflect.FastMethod;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -69,11 +71,18 @@ public class RPCServerHandler extends SimpleChannelInboundHandler<Request>{
                 Class<?>[] paramterTypes = request.getParameterTypes();
                 Object[] parameters = request.getParameters();
 
+                /*
                 //Java reflect
                 Method method = serverBean.getClass().getMethod(methodName, paramterTypes);
-                //TODO UNDERSTAND
+                //访问私有属性和方法
                 method.setAccessible(true);
                 Object result = method.invoke(serverBean, parameters);
+                */
+
+                FastClass fastClass=FastClass.create(serverBean.getClass());
+                FastMethod method1=fastClass.getMethod(methodName,paramterTypes);
+                Object result=method1.invoke(serverBean,parameters);
+
 
                 response.setResult(result);
             }catch (Exception e)

@@ -18,7 +18,7 @@ public class ServiceRegistry {
 
     private static final Logger logger= LoggerFactory.getLogger(ServiceRegistry.class);
 
-   private final String CONNECT_ADDR="172.16.34.136:2181,172.16.34.136:2183,172.16.34.136:2184";
+   private final String CONNECT_ADDR="172.16.34.141:2181,172.16.34.141:2183,172.16.34.141:2184";
    // private final String CONNECT_ADDR="192.168.137.134:2181,192.168.137.134:2182,192.168.137:2183";
     private final int SESSION_OUTTIME=5000;
 

@@ -5,6 +5,7 @@ import com.zcl.nettyRpc.client4serviceProvider.Rpc2ProviderHandler;
 import com.zcl.nettyRpc.client4serviceProvider.SameInterfaceRpcHandlers;
 import com.zcl.nettyRpc.codec.RpcDecoder;
 import com.zcl.nettyRpc.codec.RpcEncoder;
+import com.zcl.nettyRpc.codecUntil.*;
 import com.zcl.nettyRpc.protocol.Request;
 import com.zcl.nettyRpc.protocol.Response;
 import io.netty.bootstrap.Bootstrap;
@@ -24,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * 管理服务的所有连接器
@@ -202,11 +204,13 @@ public class ConnectManager {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline pipeline=socketChannel.pipeline();
-                        //TODO
-                        pipeline.addLast(new RpcEncoder(Request.class));
+                        pipeline.addLast(new ProtostuffEncoder(new ProtostuffCodecUntil(Request.class)));
+                        //   pipeline.addLast(new KryoEncoder(new KryoCodecUntil(kryoPoolFactory.getKryoPoolInstance())));
+                        // pipeline.addLast(new RpcEncoder(Request.class));
                         pipeline.addLast(new LengthFieldBasedFrameDecoder(65536,0,4,0,0));
-                        pipeline.addLast(new RpcDecoder(Response.class));
-
+                       // pipeline.addLast(new RpcDecoder(Response.class));
+                      //  pipeline.addLast(new KryoDecoder(new KryoCodecUntil(kryoPoolFactory.getKryoPoolInstance())));
+                        pipeline.addLast(new ProtostuffDecoder(new ProtostuffCodecUntil(Response.class)));
                         pipeline.addLast(new Rpc2ProviderHandler() {
                             @Override
                             public void handlerCallback(Rpc2ProviderHandler handler, boolean isActive) {
